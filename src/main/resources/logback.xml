@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="1 seconds" debug="false">
+    <property scope="context" name="CHARSET" value="utf-8"/>
+    <!-- 控制台输出格式 -->
+    <property scope="context" name="STDOUT_PATTERN"
+              value='%d{yyyy-MM-dd HH:mm:ss.SSS}-[%thread]-[%level]-[%msg]-[%logger{36}]-%C\:%M:%L %ex{full}%n'/>
+
+    <contextListener classs="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <jmxConfigurator/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>${CHARSET}</charset>
+            <pattern>${STDOUT_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework.web" level="DEBUG" />
+    <root level="INFO">
+        <appender-ref ref="console" />
+    </root>
+</configuration>
